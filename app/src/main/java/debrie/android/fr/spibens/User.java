@@ -20,12 +20,12 @@ public class User {
 
     public User(Map<String, Object> userMap){
         name = userMap.get("name").toString();
-        lab = userMap.get("lab").toString();
-        email = userMap.get("email").toString();
-        room = (int) userMap.get("room");
-        worksOn = userMap.get("worksOn").toString();
-        skillList = (ArrayList) userMap.get("skillList");
-        languages = (ArrayList) userMap.get("languages");
+//        lab = userMap.get("lab").toString();
+//        email = userMap.get("email").toString();
+//        room = (int) userMap.get("room");
+//        worksOn = userMap.get("worksOn").toString();
+//        skillList = (ArrayList) userMap.get("skillList");
+//        languages = (ArrayList) userMap.get("languages");
     }
 
     public Map<String, Object> toMap(){

@@ -28,7 +28,7 @@ import java.util.Objects;
 public class Members extends AppCompatActivity {
 
     private DatabaseReference membersRef;
-    private ArrayList<String> members;
+    private ArrayAdapter<String> members;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +36,20 @@ public class Members extends AppCompatActivity {
         setContentView(R.layout.activity_members);
 
         membersRef = FirebaseDatabase.getInstance().getReference("membersList");
+        System.out.println(membersRef.toString());
 
 
-
+        members = new ArrayAdapter<String>(this, R.layout.activitylist);
 
         membersRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 User user = new User((Map<String, Object>) dataSnapshot.getValue());
-                members.add(user.getName());
+                Map<String, Object> usermap = (Map<String, Object>) dataSnapshot.getValue();
+
+                members.add(usermap.get("name").toString());
+
+                System.out.println(usermap.toString());
             }
 
             @Override
@@ -65,19 +70,29 @@ public class Members extends AppCompatActivity {
             }
         });
 
-        ListIterator  iterator = members.listIterator();
-        while(iterator.hasNext()){
-            ImageView patrick = (ImageView) findViewById(R.id.patrickProfile);
-            patrick.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(Members.this, Profile.class);
-                    startActivity(i);
-                }
-            });
-        }
+
+//
+//        members.clear();
+
+
+        System.out.println(members.toString());
+//        ListIterator  iterator = members.listIterator();
+//        while(iterator.hasNext()){
+//            ImageView patrick = (ImageView) findViewById(R.id.patrickProfile);
+//            patrick.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent i = new Intent(Members.this, Profile.class);
+//                    startActivity(i);
+//                }
+//            });
+//        }
+
+
         GridView grid = (GridView)findViewById(R.id.grid);
-        grid.setAdapter(new ArrayAdapter<String>(this, R.layout.activitylist, (String[]) members.toArray()));
+        grid.setAdapter(members);
+
+
     }
 
 }
