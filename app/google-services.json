@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "668989498121",
+    "firebase_url": "https://spibens-331c8.firebaseio.com",
+    "project_id": "spibens-331c8",
+    "storage_bucket": "spibens-331c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668989498121:android:f9c897b1e0206199",
+        "android_client_info": {
+          "package_name": "debrie.android.fr.spibens"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668989498121-gc956vufjf6q3r1jpbbv3vsckuuu8j4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "debrie.android.fr.spibens",
+            "certificate_hash": "7fee43290d39081c786bc548611d69fcd1ceeee0"
+          }
+        },
+        {
+          "client_id": "668989498121-c9ontju0e3sb8i5sef1n59lut042dpje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW-2G0sfNOZWjkccuNrZ6lp45GuManLbs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668989498121-c9ontju0e3sb8i5sef1n59lut042dpje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
