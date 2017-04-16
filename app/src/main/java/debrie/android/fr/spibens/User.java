@@ -11,7 +11,6 @@ import java.util.Map;
 
 public class User {
     private String name;
-    private String picId;
     private ArrayList<String> skillList;
     private String lab;
     private String email;
@@ -19,20 +18,8 @@ public class User {
     private ArrayList<String> languages;
     private String worksOn;
 
-    public User(String name, String picId, ArrayList<String> skillList, String lab, String email, int room, ArrayList<String> languages, String worksOn) {
-        this.name = name;
-        this.picId = picId;
-        this.skillList = skillList;
-        this.lab = lab;
-        this.email = email;
-        this.room = room;
-        this.languages = languages;
-        this.worksOn = worksOn;
-    }
-
     public User(Map<String, Object> userMap){
         name = userMap.get("name").toString();
-        picId = userMap.get("picId").toString();
         lab = userMap.get("lab").toString();
         email = userMap.get("email").toString();
         room = (int) userMap.get("room");
@@ -46,7 +33,6 @@ public class User {
 
         userMap.put("name",name);
         userMap.put("skillList",skillList);
-        userMap.put("picId",picId);
         userMap.put("lab",lab);
         userMap.put("email",email);
         userMap.put("room",room);
@@ -60,9 +46,6 @@ public class User {
         return name;
     }
 
-    public String getPicId() {
-        return picId;
-    }
 
     public ArrayList<String> getSkillList() {
         return skillList;
@@ -92,9 +75,6 @@ public class User {
         this.name = name;
     }
 
-    public void setPicId(String picId) {
-        this.picId = picId;
-    }
 
     public void setSkillList(ArrayList<String> skillList) {
         this.skillList = skillList;
