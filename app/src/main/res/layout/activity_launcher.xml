@@ -14,6 +14,7 @@
     android:background="@color/common_google_signin_btn_text_dark_default">
 
     <ImageView
+        android:id="@+id/logout"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"

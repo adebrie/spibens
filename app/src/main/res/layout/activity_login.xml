@@ -46,15 +46,15 @@
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
 
-                <TextView
-                    android:text="\@biologie.ens.fr"
-                    android:layout_width="175dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:id="@+id/textView11"
-                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                    android:gravity="center"
-                    android:layout_weight="1" />
+                <!--<TextView-->
+                    <!--android:text="\@biologie.ens.fr"-->
+                    <!--android:layout_width="175dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="end"-->
+                    <!--android:id="@+id/textView11"-->
+                    <!--android:textAppearance="@android:style/TextAppearance.Material.Medium"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_weight="1" />-->
 
             </android.support.design.widget.TextInputLayout>
 

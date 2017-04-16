@@ -3,6 +3,24 @@
 
     <item
         is-multidex="true"
+        jar="/home/alex/AndroidStudioProjects/spibens/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/home/alex/AndroidStudioProjects/spibens/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1bdc15b8c51932c70156aea8c0a8ff04491e7522/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/alex/spibens/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1e7b0fb3dcdacb8adc381b05328095977c78e980">
+        <dex dex="/home/alex/spibens/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_323f8150d55e672e406da26077f25672db7999a2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/alex/AndroidStudioProjects/spibens/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
@@ -12,12 +30,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/alex/AndroidStudioProjects/spibens/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/home/alex/spibens/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="/home/alex/AndroidStudioProjects/spibens/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1bdc15b8c51932c70156aea8c0a8ff04491e7522/classes.dex" />
+        <dex dex="/home/alex/spibens/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_6b3f8e80ad210f2f59d8e64f20d1a9c36e4e9784/classes.dex" />
     </item>
 
 </items>
