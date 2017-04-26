@@ -13,6 +13,18 @@
     tools:context="debrie.android.fr.spibens.Launcher"
     android:background="@color/common_google_signin_btn_text_dark_default">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
+
+
     <ImageView
         android:id="@+id/logout"
         android:layout_width="150dp"

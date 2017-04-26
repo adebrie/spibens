@@ -2,6 +2,7 @@ package debrie.android.fr.spibens;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -9,9 +10,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class cineClub extends AppCompatActivity {
+public class CineClub extends AppCompatActivity {
 
     private DatabaseReference cineRef;
+    private ArrayAdapter cine;
 
 
     @Override
@@ -19,7 +21,7 @@ public class cineClub extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cine_club);
 
-        cineRef = FirebaseDatabase.getInstance().getReference("cineClub");
+        cineRef = FirebaseDatabase.getInstance().getReference("CineClub");
         cineRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -47,4 +49,10 @@ public class cineClub extends AppCompatActivity {
             }
         });
     }
+}
+
+class Cine {
+    String name;
+
+
 }

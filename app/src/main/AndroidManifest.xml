@@ -6,6 +6,12 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <meta-data
+        android:name="com.google.firebase.messaging.default_notification_icon"
+        android:resource="@mipmap/spibens" />
+    <meta-data
+        android:name="com.google.firebase.messaging.default_notification_color"
+        android:resource="@color/colorAccent" />
 
     <application
         android:allowBackup="true"
@@ -22,19 +28,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Launcher">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity android:name=".HappyH" />
-        <activity android:name=".cineClub" />
-        <activity android:name=".Members" />
-        <activity android:name=".Profile" />
+        <activity android:name=".Launcher" />
+        <activity
+            android:name=".HappyH"
+            android:label="Happy Hour" />
+        <activity
+            android:name=".CineClub"
+            android:label="Cine Club" />
+        <activity
+            android:name=".Members"
+            android:label="Members" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="Profile" />
+        <activity
+            android:name=".ProfileEditActivity"
+            android:label="@string/title_activity_profile_edit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".GamesActivity"></activity>
     </application>
 
 </manifest>

@@ -16,21 +16,21 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="debrie.android.fr.spibens.Profile">
+        tools:context="debrie.android.fr.spibens.ProfileActivity">
 
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            app:srcCompat="@drawable/patrick"
             android:layout_gravity="center"
-            android:id="@+id/patrickProfile" />
+            android:id="@+id/profileImage" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
-            android:text="Patrick Torbey"/>
+            android:id="@+id/name_text"
+            android:text="Name"/>
 
         <TextView
             android:layout_marginBottom="20dp"
@@ -50,13 +50,13 @@
                 android:layout_marginLeft="20dp"
                 android:text="Lab"/>
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:layout_marginLeft="44dp"
-                android:hint="Charnay"
-                android:id="@+id/editText1" />
+                android:hint="Lab"
+                android:id="@+id/lab_text" />
 
         </LinearLayout>
 
@@ -71,13 +71,13 @@
                 android:layout_marginLeft="20dp"
                 android:text="Room"/>
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
-                android:id="@+id/editText2"
+                android:id="@+id/room_text"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:layout_marginLeft="30dp"
-                android:hint="121"/>
+                android:hint="Room"/>
 
         </LinearLayout>
 
@@ -94,13 +94,13 @@
                 android:gravity="start"
                 android:text="Contact" />
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText3"
+                android:id="@+id/mail_text"
                 android:gravity="end"
                 android:layout_marginLeft="20dp"
-                android:hint="torbey@biologie.ens.fr"/>
+                android:hint="mail"/>
 
         </LinearLayout>
         <LinearLayout
@@ -114,13 +114,13 @@
                 android:layout_marginLeft="20dp"
                 android:text="Speaks"/>
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
-                android:id="@+id/editText4"
+                android:id="@+id/lang_text"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:layout_marginLeft="20dp"
-                android:hint="English, French, Arabic"/>
+                android:hint="languages"/>
 
         </LinearLayout>
 
@@ -129,15 +129,15 @@
             android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             android:text="Skills"/>
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
-            android:id="@+id/editText5"
+            android:id="@+id/skills_text"
             android:layout_height="wrap_content"
             android:gravity="start"
             android:textAlignment="textStart"
             android:layout_marginLeft="20dp"
             android:inputType="textMultiLine"
-            android:hint="PCR, In situ hybridisation, Zebrafish transgenesis, CRISPR, Chicken electroporation, ATAC-seq, Molecular genetics techniques."/>
+            android:hint="SKills"/>
 
         />
         <TextView
@@ -145,15 +145,15 @@
             android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             android:text="Works on"/>
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-            android:id="@+id/editText6"
+            android:id="@+id/workson_text"
             android:layout_marginLeft="20dp"
             android:gravity="start"
             android:textAlignment="textStart"
-            android:hint="Cooperation of multiple enhancers for Krox20 regulation in vertebrate hindbrain and their evolutionary divergence"/>
+            android:hint="Projects"/>
 
 
         <Button

@@ -2,7 +2,6 @@ package debrie.android.fr.spibens;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ListIterator;
 import java.util.Map;
 
 /**
@@ -11,28 +10,31 @@ import java.util.Map;
 
 public class User {
     private String name;
-    private ArrayList<String> skillList;
+    private ArrayList<String> skills;
     private String lab;
     private String email;
-    private int room;
+    private String room;
     private ArrayList<String> languages;
     private String worksOn;
 
     public User(Map<String, Object> userMap){
         name = userMap.get("name").toString();
-//        lab = userMap.get("lab").toString();
-//        email = userMap.get("email").toString();
-//        room = (int) userMap.get("room");
-//        worksOn = userMap.get("worksOn").toString();
-//        skillList = (ArrayList) userMap.get("skillList");
-//        languages = (ArrayList) userMap.get("languages");
+        lab = userMap.get("lab").toString();
+        email = userMap.get("email").toString();
+        room = userMap.get("room").toString();
+        worksOn = userMap.get("worksOn").toString();
+        skills = (ArrayList) userMap.get("skills");
+        languages = (ArrayList) userMap.get("languages");
+    }
+    public User(){
+
     }
 
     public Map<String, Object> toMap(){
         HashMap<String, Object> userMap = new HashMap<>();
 
         userMap.put("name",name);
-        userMap.put("skillList",skillList);
+        userMap.put("skills", skills);
         userMap.put("lab",lab);
         userMap.put("email",email);
         userMap.put("room",room);
@@ -47,8 +49,8 @@ public class User {
     }
 
 
-    public ArrayList<String> getSkillList() {
-        return skillList;
+    public ArrayList<String> getSkills() {
+        return skills;
     }
 
     public String getLab() {
@@ -59,7 +61,7 @@ public class User {
         return email;
     }
 
-    public int getRoom() {
+    public String getRoom() {
         return room;
     }
 
@@ -76,8 +78,8 @@ public class User {
     }
 
 
-    public void setSkillList(ArrayList<String> skillList) {
-        this.skillList = skillList;
+    public void setSkills(ArrayList<String> skills) {
+        this.skills = skills;
     }
 
     public void setLab(String lab) {
@@ -88,7 +90,7 @@ public class User {
         this.email = email;
     }
 
-    public void setRoom(int room) {
+    public void setRoom(String room) {
         this.room = room;
     }
 

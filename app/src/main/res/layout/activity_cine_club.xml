@@ -8,14 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="debrie.android.fr.spibens.cineClub">
- <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@android:style/TextAppearance.Material.Large"
-        android:layout_marginBottom="40dp"
-
-        android:text="Cine Club"
-     android:id="@+id/textView6" />
+    tools:context="debrie.android.fr.spibens.CineClub">
 
 </RelativeLayout>

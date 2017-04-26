@@ -32,7 +32,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -343,22 +342,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            System.out.println("Attempting sign in...");
-            if (mAuth.signInWithEmailAndPassword(mEmail, mPassword).isSuccessful()) return true;
+            mAuth.signInWithEmailAndPassword(mEmail, mPassword);
 
             // TODO: register the new account here.
-
-            System.out.println("Attempting sign up...");
-            mAuth.createUserWithEmailAndPassword(mEmail, mPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                @Override
-                public void onSuccess(AuthResult authResult) {
-                    FirebaseUser u = mAuth.getCurrentUser();
-                    if (!u.isEmailVerified()){
-                        u.sendEmailVerification();
-                        Toast.makeText(getApplicationContext(), "Please verify email link", Toast.LENGTH_SHORT);
+            if (mAuth.getCurrentUser() == null ) {
+                mAuth.createUserWithEmailAndPassword(mEmail, mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(getApplicationContext(), "Please verify email link", Toast.LENGTH_LONG).show();
+                        mAuth.getCurrentUser().sendEmailVerification();
                     }
-                }
-            });
+                });
+            }
             return true;
         }
 

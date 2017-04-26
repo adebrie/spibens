@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="/home/alex/.android/build-cache/ea9605b6ca979efbf976f153f6d1def1462627c5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3c433e48557e476290f45fb6cb568d1a103c9978">
+        <dex dex="/home/alex/spibens/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d9ed616fb0640485ade2f84517c0c458b8629610/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/alex/AndroidStudioProjects/spibens/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -12,12 +21,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/alex/spibens/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/home/alex/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="1e7b0fb3dcdacb8adc381b05328095977c78e980">
-        <dex dex="/home/alex/spibens/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_323f8150d55e672e406da26077f25672db7999a2/classes.dex" />
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="/home/alex/spibens/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.7.0_cede6bc3ab7ad7001d1a519c6ebf006d93d34dac/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -27,6 +36,24 @@
         revision="25.0.2"
         sha1="6cb552498d35fd2500c7c3fffba8d7dd22a0919d">
         <dex dex="/home/alex/AndroidStudioProjects/spibens/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1357f6204a62c47a5f7fc5e192c2d9a1331e2edd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/alex/spibens/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a6de4f7cf8963363a6bb3445a04351da91a7083a">
+        <dex dex="/home/alex/spibens/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_323f8150d55e672e406da26077f25672db7999a2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/alex/.android/build-cache/64f4e2f62d42c5aed8b55e7c2233ba239691d597/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="51518e8e8f97c314a243d9def0ded91d385b6a1e">
+        <dex dex="/home/alex/spibens/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6fb38648ac465a9143159ed9f95d12ad826c2b11/classes.dex" />
     </item>
     <item
         is-multidex="true"

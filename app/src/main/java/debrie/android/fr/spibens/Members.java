@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
 import android.widget.GridView;
@@ -44,7 +45,7 @@ public class Members extends AppCompatActivity {
         membersRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                User user = new User((Map<String, Object>) dataSnapshot.getValue());
+
                 Map<String, Object> usermap = (Map<String, Object>) dataSnapshot.getValue();
 
                 members.add(usermap.get("name").toString());
@@ -71,18 +72,14 @@ public class Members extends AppCompatActivity {
         });
 
 
-//
-//        members.clear();
-
-
-        System.out.println(members.toString());
+//        System.out.println(members.toString());
 //        ListIterator  iterator = members.listIterator();
 //        while(iterator.hasNext()){
 //            ImageView patrick = (ImageView) findViewById(R.id.patrickProfile);
 //            patrick.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
-//                    Intent i = new Intent(Members.this, Profile.class);
+//                    Intent i = new Intent(Members.this, ProfileActivity.class);
 //                    startActivity(i);
 //                }
 //            });
@@ -92,7 +89,18 @@ public class Members extends AppCompatActivity {
         GridView grid = (GridView)findViewById(R.id.grid);
         grid.setAdapter(members);
 
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(Members.this, ProfileActivity.class);
+                i.putExtra("id", id+1);
+                System.out.println("Clicked item "+position);
+                startActivity(i);
+            }
+        });
+
 
     }
+
 
 }
