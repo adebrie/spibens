@@ -6,6 +6,10 @@ import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -29,41 +33,56 @@ public class HappyH extends AppCompatActivity {
     boolean starred = false;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.happyh, menu);
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_happyh);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         final StorageReference mStorageRef;
-
         mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://spibens-331c8.appspot.com/").child("HappyHour").child("flyer.png");
 
         ImageView im = (ImageView) findViewById(R.id.flyer_im);
-
         Glide.with(this)
                 .using(new FirebaseImageLoader())
                 .load(mStorageRef)
                 .into(im);
 
-        final ImageButton s = (ImageButton)findViewById(R.id.imageButton);
-        s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_favorite:
                 FirebaseMessaging fm = FirebaseMessaging.getInstance();
                 if (!starred) {
-                    s.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_star));
+                    item.setIcon(R.drawable.ic_action_star);
                     fm.subscribeToTopic("HappyHour");
-                    Toast.makeText(getApplicationContext(), "Subscribed to HappyHour", Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(getApplicationContext(), "Subscribed to HappyHour", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    s.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_star_border));
+                    item.setIcon(R.drawable.ic_action_star_border);
                     fm.unsubscribeFromTopic("HappyHour");
-                    Toast.makeText(getApplicationContext(), "Unsubscribed from HappyHour", Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(getApplicationContext(), "Unsubscribed from HappyHour", Toast.LENGTH_SHORT).show();
                 }
                 starred = !starred;
-            }
-        });
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
     }
 }

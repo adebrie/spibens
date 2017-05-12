@@ -94,7 +94,6 @@ public class Members extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(Members.this, ProfileActivity.class);
                 i.putExtra("id", id+1);
-                System.out.println("Clicked item "+position);
                 startActivity(i);
             }
         });

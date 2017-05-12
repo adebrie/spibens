@@ -1,11 +1,12 @@
 package debrie.android.fr.spibens;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,10 +21,19 @@ public class Launcher extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater i = getMenuInflater();
+        i.inflate(R.menu.launcher, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_profile:
-                startActivity(new Intent(Launcher.this, ProfileActivity.class));
+                Intent i = new Intent(Launcher.this, ProfileActivity.class);
+                i.putExtra("id", 1);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -35,6 +45,8 @@ public class Launcher extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         setContentView(R.layout.activity_launcher);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_launcher);
+        setSupportActionBar(myToolbar);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -72,7 +84,7 @@ public class Launcher extends AppCompatActivity {
         members.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent (Launcher.this, Members.class);
+                Intent i = new Intent (Launcher.this, MembersActivity.class);
                 startActivity(i);
             }
         });
@@ -104,9 +116,7 @@ public class Launcher extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_launcher);
         setSupportActionBar(myToolbar);
-
-
     }
 }
