@@ -6,6 +6,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,8 +15,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -38,7 +43,9 @@ public class ProfileEditActivity extends AppCompatActivity {
         final EditText lab = (EditText) findViewById(R.id.lab_text);
         final EditText room = (EditText) findViewById(R.id.room_text);
         final EditText worksOn = (EditText) findViewById(R.id.workson_text);
-        final EditText skills = (EditText) findViewById(R.id.skills_text);
+        final AutoCompleteTextView newskill = (AutoCompleteTextView) findViewById(R.id.skills_text);
+        final ArrayAdapter<String> skills = new ArrayAdapter<String>(this, R.layout.activitylist);
+        final ArrayAdapter<String> languages = new ArrayAdapter<String>(this, R.layout.activitylist);
         final EditText lang = (EditText) findViewById(R.id.lang_text);
 
 
@@ -55,6 +62,29 @@ public class ProfileEditActivity extends AppCompatActivity {
                 .load(mStorageRef)
                 .into(im);
 
+
+        profileRef = FirebaseDatabase.getInstance().getReference("membersList").child(String.valueOf(id));
+
+        profileRef.addValueEventListener(new ValueEventListener() {
+                                             @Override
+                                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                                 u = new User((HashMap) dataSnapshot.getValue());
+                                                 mail.setText(u.getEmail());
+                                                 name.setText(u.getName());
+                                                 lab.setText(u.getLab());
+                                                 room.setText(u.getRoom());
+                                                 worksOn.setText(u.getWorksOn());
+                                                 skills.addAll(u.getSkills());
+                                                 languages.addAll(u.getLanguages());
+                                             }
+
+                                             @Override
+                                             public void onCancelled(DatabaseError databaseError) {
+                                              // que passa ?
+                                             }
+                                         });
+
+
         //SEND UPDATE OnClickListener
         final Button b = (Button) findViewById(R.id.updateSend);
         b.setOnClickListener(new View.OnClickListener() {
@@ -67,10 +97,12 @@ public class ProfileEditActivity extends AppCompatActivity {
                 u.setWorksOn(worksOn.getText().toString());
                 u.setLab(lab.getText().toString());
 
-                profileRef = FirebaseDatabase.getInstance().getReference("membersList");
+                //profileRef = FirebaseDatabase.getInstance().getReference("membersList");
 
-                profileRef.child(String.valueOf(id)).setValue(u);
+                //profileRef.child(String.valueOf(id)).setValue(u);
 
+
+                profileRef.setValue(u);
             }
         });
 
