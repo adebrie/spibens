@@ -28,7 +28,7 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 
-public class HappyH extends AppCompatActivity {
+public class HappyHourActivity extends AppCompatActivity {
 
     boolean starred = false;
 

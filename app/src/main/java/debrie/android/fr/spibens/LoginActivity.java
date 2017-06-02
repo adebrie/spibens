@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null && user.isEmailVerified()){
-                    startActivity(new Intent(LoginActivity.this, Launcher.class));
+                    startActivity(new Intent(LoginActivity.this, LauncherActivity.class));
                 }
             }
         };
@@ -363,7 +363,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                startActivity(new Intent(LoginActivity.this, Launcher.class));
+                startActivity(new Intent(LoginActivity.this, LauncherActivity.class));
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
