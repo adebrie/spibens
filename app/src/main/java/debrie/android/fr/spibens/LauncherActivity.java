@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class Launcher extends AppCompatActivity {
+public class LauncherActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -31,7 +31,7 @@ public class Launcher extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_profile:
-                Intent i = new Intent(Launcher.this, ProfileActivity.class);
+                Intent i = new Intent(LauncherActivity.this, ProfileActivity.class);
                 i.putExtra("id", 1);
                 startActivity(i);
                 return true;
@@ -58,7 +58,7 @@ public class Launcher extends AppCompatActivity {
 
                 } else {
                     //Logged out
-                    startActivity(new Intent(Launcher.this, LoginActivity.class));
+                    startActivity(new Intent(LauncherActivity.this, LoginActivity.class));
                 }
             }
         };
@@ -67,7 +67,7 @@ public class Launcher extends AppCompatActivity {
         sports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Launcher.this, GamesActivity.class));
+                startActivity(new Intent(LauncherActivity.this, GamesActivity.class));
             }
         });
 
@@ -76,7 +76,7 @@ public class Launcher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(Launcher.this, LoginActivity.class));
+                startActivity(new Intent(LauncherActivity.this, LoginActivity.class));
             }
         });
 
@@ -84,7 +84,7 @@ public class Launcher extends AppCompatActivity {
         members.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent (Launcher.this, MembersActivity.class);
+                Intent i = new Intent (LauncherActivity.this, MembersActivity.class);
                 startActivity(i);
             }
         });
@@ -93,7 +93,7 @@ public class Launcher extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Launcher.this, LoginActivity.class);
+                Intent i = new Intent(LauncherActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         });
@@ -102,7 +102,7 @@ public class Launcher extends AppCompatActivity {
         happyH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Launcher.this, HappyH.class);
+                Intent i = new Intent(LauncherActivity.this, HappyHourActivity.class);
                 startActivity(i);
             }
         });

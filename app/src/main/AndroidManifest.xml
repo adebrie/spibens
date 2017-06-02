@@ -28,15 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Launcher" />
+        <activity android:name=".LauncherActivity" />
         <activity
-            android:name=".HappyH"
+            android:name=".HappyHourActivity"
             android:label="Happy Hour" />
         <activity
             android:name=".CineClub"
             android:label="Cine Club" />
         <activity
-            android:name=".Members"
+            android:name=".MembersActivity"
             android:label="Members" />
         <activity
             android:name=".ProfileActivity"
