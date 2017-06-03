@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="debrie.android.fr.spibens">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <meta-data
         android:name="com.google.firebase.messaging.default_notification_icon"
         android:resource="@mipmap/spibens" />
@@ -31,21 +33,40 @@
         <activity android:name=".LauncherActivity" />
         <activity
             android:name=".HappyHourActivity"
-            android:label="Happy Hour" />
+            android:label="Happy Hour"
+            android:parentActivityName=".ProfileActivity" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ProfileActivity" />
         <activity
             android:name=".CineClub"
-            android:label="Cine Club" />
+            android:label="Cine Club"
+            android:parentActivityName=".ProfileActivity" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ProfileActivity" />
         <activity
             android:name=".MembersActivity"
-            android:label="Members" />
+            android:label="Members"
+            android:parentActivityName=".ProfileActivity" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ProfileActivity" />
         <activity
             android:name=".ProfileActivity"
-            android:label="Profile" />
+            android:label="Profile"
+            android:parentActivityName=".ProfileActivity" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ProfileActivity" />
         <activity
             android:name=".ProfileEditActivity"
-            android:label="@string/title_activity_profile_edit"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".GamesActivity"></activity>
+            android:label="Edit Profile"
+            android:parentActivityName=".ProfileActivity" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ProfileActivity" />
+        <activity android:name=".GamesActivity"/>
     </application>
 
 </manifest>
