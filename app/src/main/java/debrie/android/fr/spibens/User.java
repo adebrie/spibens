@@ -16,6 +16,7 @@ public class User {
     private String room;
     private ArrayList<String> languages;
     private String worksOn;
+    private String studies;
 
     public User(Map<String, Object> userMap){
         name = userMap.get("name").toString();
@@ -23,8 +24,18 @@ public class User {
         email = userMap.get("email").toString();
         room = userMap.get("room").toString();
         worksOn = userMap.get("worksOn").toString();
-        skills = (ArrayList) userMap.get("skills");
-        languages = (ArrayList) userMap.get("languages");
+        studies = userMap.get("studies").toString();
+        if(userMap.get("skills")==null){
+            skills = new ArrayList<>();
+        }else{
+            skills = new ArrayList<String>((ArrayList) userMap.get("skills"));
+            skills.remove(0);
+        }
+        if(userMap.get("languages")==null){
+            languages = new ArrayList<>();
+        }else{
+            languages = new ArrayList<String>((ArrayList) userMap.get("languages"));
+        }
     }
     public User(){
 
@@ -102,5 +113,11 @@ public class User {
         this.worksOn = worksOn;
     }
 
+    public String getStudies() {
+        return studies;
+    }
 
+    public void setStudies(String studies) {
+        this.studies = studies;
+    }
 }

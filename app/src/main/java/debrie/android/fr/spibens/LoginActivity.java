@@ -350,7 +350,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(getApplicationContext(), "Please verify email link", Toast.LENGTH_LONG).show();
-//                        mAuth.getCurrentUser().sendEmailVerification();
+                        mAuth.getCurrentUser().sendEmailVerification();
+                        //lancer activité formulaire
+                        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+
+
                     }
                 });
             }
