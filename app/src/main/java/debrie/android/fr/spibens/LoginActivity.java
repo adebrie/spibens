@@ -32,6 +32,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -105,7 +107,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null && user.isEmailVerified()){
+                if (user != null){
                     startActivity(new Intent(LoginActivity.this, LauncherActivity.class));
                 }
             }
@@ -342,21 +344,37 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            mAuth.signInWithEmailAndPassword(mEmail, mPassword);
+            mAuth.signInWithEmailAndPassword(mEmail, mPassword
+            ).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    Toast.makeText(getApplicationContext(), "Signed In ! ", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    mPasswordView.setError("Incorrect password");
+                }
+            });
+
 
             // TODO: register the new account here.
             if (mAuth.getCurrentUser() == null ) {
-                mAuth.createUserWithEmailAndPassword(mEmail, mPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mAuth.createUserWithEmailAndPassword(mEmail, mPassword
+                ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(getApplicationContext(), "Please verify email link", Toast.LENGTH_LONG).show();
-                        mAuth.getCurrentUser().sendEmailVerification();
-                        //lancer activité formulaire
-                        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-
-
+                        if (task.isSuccessful()){
+                            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        mPasswordView.setError("Error creating new account");
                     }
                 });
+
             }
             return true;
         }
@@ -366,9 +384,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
-                startActivity(new Intent(LoginActivity.this, LauncherActivity.class));
-            } else {
+            if (!success){
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }

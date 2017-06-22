@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.sql.SQLOutput;
+
 
 public class LauncherActivity extends AppCompatActivity {
 
@@ -29,15 +31,18 @@ public class LauncherActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        mAuth = FirebaseAuth.getInstance();
         switch (item.getItemId()){
             case R.id.action_profile:
                 Intent i = new Intent(LauncherActivity.this, ProfileActivity.class);
-                i.putExtra("id", 1);
+                i.putExtra("id", mAuth.getCurrentUser().getUid());
                 startActivity(i);
                 return true;
+            case R.id.action_logout:
+                mAuth.signOut();
+                startActivity(new Intent(LauncherActivity.this, LoginActivity.class));
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
@@ -55,6 +60,7 @@ public class LauncherActivity extends AppCompatActivity {
                 if (u != null ) {
                     //Logged in
                     System.out.println("Signed in");
+                    System.out.println(u.getUid());
 
                 } else {
                     //Logged out
@@ -71,14 +77,14 @@ public class LauncherActivity extends AppCompatActivity {
             }
         });
 
-        ImageView logout = (ImageView) findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(LauncherActivity.this, LoginActivity.class));
-            }
-        });
+//        ImageView logout = (ImageView) findViewById(R.id.logout);
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+//                startActivity(new Intent(LauncherActivity.this, LoginActivity.class));
+//            }
+//        });
 
         ImageView members = (ImageView) findViewById(R.id.members);
         members.setOnClickListener(new View.OnClickListener() {
