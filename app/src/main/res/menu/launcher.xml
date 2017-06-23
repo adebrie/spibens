@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <item
-        android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_action_star_border"
-        android:title="Favorite"
+        android:id="@+id/action_myprofile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="My Profile"
         app:showAsAction="ifRoom"
     />
 

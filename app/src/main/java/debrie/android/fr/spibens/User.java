@@ -17,6 +17,8 @@ public class User {
     private ArrayList<String> languages;
     private String worksOn;
     private String studies;
+    private String startingYear;
+    private String section;
 
     public User(Map<String, Object> userMap){
         name = userMap.get("name").toString();
@@ -25,6 +27,8 @@ public class User {
         room = userMap.get("room").toString();
         worksOn = userMap.get("worksOn").toString();
         studies = userMap.get("studies").toString();
+        startingYear = userMap.get("startingYear").toString();
+        section = userMap.get("section").toString();
         if(userMap.get("skills")==null){
             skills = new ArrayList<>();
         }else{
@@ -51,8 +55,26 @@ public class User {
         userMap.put("room",room);
         userMap.put("languages",languages);
         userMap.put("worksOn",worksOn);
+        userMap.put("startingYear", startingYear);
+        userMap.put("section", section);
 
         return userMap;
+    }
+
+    public String getStartingYear() {
+        return startingYear;
+    }
+
+    public void setStartingYear(String startingYear) {
+        this.startingYear = startingYear;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
     }
 
     public String getName() {

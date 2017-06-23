@@ -12,18 +12,23 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
+
         tools:context="debrie.android.fr.spibens.ProfileActivity">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/holo_blue_dark"
+            android:layout_marginBottom="15dp"
+            android:elevation="4dp"
+            />
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:id="@+id/profileImage" />
+            android:id="@+id/profileImageEdit" />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -124,16 +129,12 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             android:text="Skills"/>
-        <AutoCompleteTextView
+        <EditText
             android:layout_width="wrap_content"
             android:id="@+id/skills_text"
             android:layout_height="wrap_content"
@@ -142,16 +143,8 @@
             android:layout_marginLeft="20dp"
             android:inputType="textMultiLine"
             android:hint="SKills"/>
-            <TextView
-                android:id="@+id/skiill"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
-        <ListView
-            android:id="@+id/skill_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></ListView>
-        </LinearLayout>
+        />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -168,11 +161,5 @@
             android:hint="Projects"/>
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:id="@+id/updateSend"
-            android:text="SEND UPDATE"/>
     </LinearLayout>
 </ScrollView>

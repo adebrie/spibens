@@ -13,9 +13,10 @@
 
     <!-- Login progress -->
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/logo"
+        android:layout_width="wrap_content"
+        android:padding="40dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/spibens"
         android:id="@+id/imageView2" />
 
     <ScrollView

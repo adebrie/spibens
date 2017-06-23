@@ -33,7 +33,7 @@ public class LauncherActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         mAuth = FirebaseAuth.getInstance();
         switch (item.getItemId()){
-            case R.id.action_profile:
+            case R.id.action_myprofile:
                 Intent i = new Intent(LauncherActivity.this, ProfileActivity.class);
                 i.putExtra("id", mAuth.getCurrentUser().getUid());
                 startActivity(i);

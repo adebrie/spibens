@@ -3,6 +3,10 @@ package debrie.android.fr.spibens;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -25,11 +30,38 @@ public class ProfileActivity extends AppCompatActivity {
     private StorageReference mStorageRef;
     private DatabaseReference profileRef;
     private User u;
+    private String id;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_profile_edit:
+                Intent i = new Intent(ProfileActivity.this, ProfileEditActivity.class);
+                System.out.println("USER ID "+id);
+                i.putExtra("id", id);
+                startActivity(i);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater i = getMenuInflater();
+        i.inflate(R.menu.profile, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        Toolbar mytoolbar = (Toolbar) findViewById(R.id.my_toolbar_profile);
+        setSupportActionBar(mytoolbar);
+
 
         final TextView mail = (TextView) findViewById(R.id.mail_text);
         final TextView name = (TextView) findViewById(R.id.name_text);
@@ -40,9 +72,8 @@ public class ProfileActivity extends AppCompatActivity {
         final TextView lang = (TextView) findViewById(R.id.lang_text);
 
 
-        final Long id = getIntent().getLongExtra("id", 1);
-
-        profileRef = FirebaseDatabase.getInstance().getReference("membersList").child(id.toString());
+        id = getIntent().getStringExtra("id");
+        profileRef = FirebaseDatabase.getInstance().getReference("membersList").child(String.valueOf(id));
 
         profileRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -102,16 +133,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .load(mStorageRef)
                 .into(im);
 
-        //OnClickListener for EDIT button
-        Button b = (Button) findViewById(R.id.updateProfile);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, ProfileEditActivity.class);
-                i.putExtra("id", id);
-                startActivity(i);
-            }
-        });
+
 
     }
 }
