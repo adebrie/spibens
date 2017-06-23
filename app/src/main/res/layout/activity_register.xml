@@ -19,10 +19,8 @@
             android:id="@+id/my_toolbar_register"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            android:background="@android:color/holo_blue_dark"
+            android:elevation="4dp"/>
 
 
         <ImageView
@@ -56,16 +54,19 @@
         android:id="@+id/studies">
         <RadioButton
             android:id="@+id/radioPHD"
+            android:onClick="onStudiesRadioButtonClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PHD"/>
         <RadioButton
             android:id="@+id/radioPostDoc"
+            android:onClick="onStudiesRadioButtonClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Post-Doc" />
         <RadioButton
             android:id="@+id/radioITA"
+            android:onClick="onStudiesRadioButtonClick"
             android:text="ITA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -100,24 +101,28 @@
 
             <RadioButton
                 android:id="@+id/radioDevelopmental"
+                android:onClick="onSectionRadioButtonClick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Developmental \Biology" />
 
             <RadioButton
                 android:id="@+id/radioEcology"
+                android:onClick="onSectionRadioButtonClick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ecology and Evolutionary Biology" />
 
             <RadioButton
                 android:id="@+id/radioFunctional"
+                android:onClick="onSectionRadioButtonClick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Functional Geomics" />
+                android:text="Functional Genomics" />
 
             <RadioButton
                 android:id="@+id/radioNeuroscience"
+                android:onClick="onSectionRadioButtonClick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Neuroscience" />

@@ -1,11 +1,13 @@
 package debrie.android.fr.spibens;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,11 +34,21 @@ public class MembersActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_members);
         Toolbar mytoolbar = (Toolbar) findViewById(R.id.my_toolbar_members);
         setSupportActionBar(mytoolbar);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -79,11 +91,12 @@ public class MembersActivity extends AppCompatActivity {
         GridView grid = (GridView)findViewById(R.id.grid);
         grid.setAdapter(members);
 
+        // TODO: Map clicked item's position to user's UID
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(MembersActivity.this, ProfileActivity.class);
-                i.putExtra("id", id+1);
+//                i.putExtra("id", id+1);
                 startActivity(i);
             }
         });

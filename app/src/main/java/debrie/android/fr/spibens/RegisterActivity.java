@@ -60,18 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
                 final RadioGroup section = (RadioGroup) findViewById(R.id.section);
                 final EditText year = (EditText)findViewById(R.id.editText2);
 
-
                 mAuth = FirebaseAuth.getInstance();
                 profileRef = FirebaseDatabase.getInstance().getReference("membersList").child(mAuth.getCurrentUser().getUid());
 
-                u = new User();
-                System.out.println(studies.getCheckedRadioButtonId());
-
-                int radioButtonID = studies.getCheckedRadioButtonId();
-                View radioButton = studies.findViewById(radioButtonID);
-                int idx = studies.indexOfChild(radioButton);
-//                RadioButton r = (RadioButton)  radioButton.getChildAt(idx);
-//                String selectedtext = r.getText().toString();
                 switch (section.getCheckedRadioButtonId()){
                     case 1 :
                         u.setSection("Developmental Biology");
@@ -86,34 +77,54 @@ public class RegisterActivity extends AppCompatActivity {
                         u.setSection("Neuroscience");
                         break;
                 }
+
                 u.setStartingYear(year.getText().toString());
 
                 profileRef.setValue(u.toMap());
-
-
 
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    public void onStudiesRadioButtonClick(View view){
+        boolean checked = ((RadioButton) view).isChecked();
+        switch (view.getId()){
+            case R.id.radioPHD:
+                u.setStudies("PHD");
+                break;
+            case R.id.radioPostDoc:
+                u.setStudies("PostDoc");
+                break;
+            case R.id.radioITA:
+                u.setStudies("ITA");
+        }
+
+    }
+
+    public void onSectionRadioButtonClick(View v){
+        boolean checked = ((RadioButton) v).isChecked();
+        switch (v.getId()){
+            case R.id.radioDevelopmental:
+                u.setSection("Developmental Biology");
+                break;
+            case R.id.radioEcology:
+                u.setSection("Ecology and Evolutionary Biology");
+                break;
+            case R.id.radioFunctional:
+                u.setSection("Functional Genomics");
+                break;
+            case R.id.radioNeuroscience:
+                u.setSection("Neuroscience");
+        }
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_register);
         setSupportActionBar(myToolbar);
-//
-//        final EditText mail = (EditText) findViewById(R.id.mail_text);
-//        final EditText name = (EditText) findViewById(R.id.name_text);
-//        final EditText lab = (EditText) findViewById(R.id.lab_text);
-//        final EditText room = (EditText) findViewById(R.id.room_text);
-//        final EditText worksOn = (EditText) findViewById(R.id.workson_text);
-//        final AutoCompleteTextView newskill = (AutoCompleteTextView) findViewById(R.id.skills_text);
-//        final ArrayAdapter<String> skills = new ArrayAdapter<String>(this, R.layout.activitylist);
-//        final ArrayAdapter<String> languages = new ArrayAdapter<String>(this, R.layout.activitylist);
-//        final EditText lang = (EditText) findViewById(R.id.lang_text);
-//
 
     }
 

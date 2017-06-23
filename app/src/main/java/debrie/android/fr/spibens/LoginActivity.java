@@ -342,8 +342,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
 
+            // Attempt authentication against a network service.
             mAuth.signInWithEmailAndPassword(mEmail, mPassword
             ).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
@@ -357,8 +357,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             });
 
-
-            // TODO: register the new account here.
+            // Register the new account here.
             if (mAuth.getCurrentUser() == null ) {
                 mAuth.createUserWithEmailAndPassword(mEmail, mPassword
                 ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -374,7 +373,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         mPasswordView.setError("Error creating new account");
                     }
                 });
-
             }
             return true;
         }

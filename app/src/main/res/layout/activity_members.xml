@@ -12,6 +12,7 @@ tools:context="debrie.android.fr.spibens.MembersActivity">
         android:id="@+id/my_toolbar_members"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/holo_blue_dark"
         android:elevation="4dp"/>
 
 
