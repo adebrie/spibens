@@ -341,6 +341,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
+        protected void onPreExecute() {
+            showProgress(true);
+            super.onPreExecute();
+        }
+
+        @Override
         protected Boolean doInBackground(Void... params) {
 
             // Attempt authentication against a network service.

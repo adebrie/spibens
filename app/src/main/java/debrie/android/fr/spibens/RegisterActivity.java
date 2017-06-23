@@ -63,21 +63,6 @@ public class RegisterActivity extends AppCompatActivity {
                 mAuth = FirebaseAuth.getInstance();
                 profileRef = FirebaseDatabase.getInstance().getReference("membersList").child(mAuth.getCurrentUser().getUid());
 
-                switch (section.getCheckedRadioButtonId()){
-                    case 1 :
-                        u.setSection("Developmental Biology");
-                        break;
-                    case 2 :
-                        u.setSection("Ecology and Evolutionary Biology");
-                        break;
-                    case 3 :
-                        u.setSection("Functional Genomics");
-                        break;
-                    case 4 :
-                        u.setSection("Neuroscience");
-                        break;
-                }
-
                 u.setStartingYear(year.getText().toString());
 
                 profileRef.setValue(u.toMap());
@@ -91,13 +76,14 @@ public class RegisterActivity extends AppCompatActivity {
         boolean checked = ((RadioButton) view).isChecked();
         switch (view.getId()){
             case R.id.radioPHD:
-                u.setStudies("PHD");
+                if (checked) u.setStudies("PHD");
                 break;
             case R.id.radioPostDoc:
-                u.setStudies("PostDoc");
+                if (checked) u.setStudies("PostDoc");
                 break;
             case R.id.radioITA:
-                u.setStudies("ITA");
+                if(checked) u.setStudies("ITA");
+                break;
         }
 
     }
@@ -106,16 +92,17 @@ public class RegisterActivity extends AppCompatActivity {
         boolean checked = ((RadioButton) v).isChecked();
         switch (v.getId()){
             case R.id.radioDevelopmental:
-                u.setSection("Developmental Biology");
+                if (checked) u.setSection("Developmental Biology");
                 break;
             case R.id.radioEcology:
-                u.setSection("Ecology and Evolutionary Biology");
+                if (checked) u.setSection("Ecology and Evolutionary Biology");
                 break;
             case R.id.radioFunctional:
-                u.setSection("Functional Genomics");
+                if (checked) u.setSection("Functional Genomics");
                 break;
             case R.id.radioNeuroscience:
-                u.setSection("Neuroscience");
+                if (checked) u.setSection("Neuroscience");
+                break;
         }
 
     }
@@ -125,6 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_register);
         setSupportActionBar(myToolbar);
+        u = new User();
 
     }
 

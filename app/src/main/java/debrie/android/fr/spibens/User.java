@@ -57,6 +57,7 @@ public class User {
         userMap.put("worksOn",worksOn);
         userMap.put("startingYear", startingYear);
         userMap.put("section", section);
+        userMap.put("studies", studies);
 
         return userMap;
     }
@@ -110,7 +111,6 @@ public class User {
         this.name = name;
     }
 
-
     public void setSkills(ArrayList<String> skills) {
         this.skills = skills;
     }
@@ -133,10 +133,6 @@ public class User {
 
     public void setWorksOn(String worksOn) {
         this.worksOn = worksOn;
-    }
-
-    public String getStudies() {
-        return studies;
     }
 
     public void setStudies(String studies) {

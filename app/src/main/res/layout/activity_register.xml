@@ -23,20 +23,7 @@
             android:elevation="4dp"/>
 
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:id="@+id/profileImage" />
 
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/name_text"
-            android:text="Name"/>
 
         <TextView
             android:layout_marginBottom="20dp"
