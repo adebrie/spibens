@@ -1,5 +1,6 @@
 package debrie.android.fr.spibens;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -19,12 +20,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class MembersActivity extends AppCompatActivity {
 
     private DatabaseReference membersRef;
-    private ArrayAdapter<String> members;
+    private CustomAdapter members;
+    private ArrayList uids=new ArrayList();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,7 +51,7 @@ public class MembersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_members);
         Toolbar mytoolbar = (Toolbar) findViewById(R.id.my_toolbar_members);
         setSupportActionBar(mytoolbar);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -56,7 +59,6 @@ public class MembersActivity extends AppCompatActivity {
         System.out.println(membersRef.toString());
 
 
-        members = new ArrayAdapter<String>(this, R.layout.activitylist);
 
         membersRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -64,7 +66,12 @@ public class MembersActivity extends AppCompatActivity {
 
                 Map<String, Object> usermap = (Map<String, Object>) dataSnapshot.getValue();
 
-                members.add(usermap.get("name").toString());
+                try {
+                    members.add(usermap.get("name").toString(),dataSnapshot.getKey());
+                    uids.add(dataSnapshot.getKey());
+                }catch (NullPointerException e){
+                    e.printStackTrace();
+                }
 
                 System.out.println(usermap.toString());
             }
@@ -86,9 +93,10 @@ public class MembersActivity extends AppCompatActivity {
 
             }
         });
-        
 
-        GridView grid = (GridView)findViewById(R.id.grid);
+
+        members=new CustomAdapter(this);
+        GridView grid=(GridView)findViewById(R.id.grid);
         grid.setAdapter(members);
 
         // TODO: Map clicked item's position to user's UID

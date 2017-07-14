@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -73,12 +74,15 @@ public class ProfileEditActivity extends AppCompatActivity {
                 i.putExtra("id", id);
                 startActivity(i);
                 break;
+            case R.id.home:
+//                NavUtils.navigateUpFromSameTask(this);
+                return true;
 
             case R.id.action_getPicture:
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 234);
                 break;
 
             default:
@@ -95,6 +99,8 @@ public class ProfileEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_edit);
         Toolbar mytoolbar = (Toolbar) findViewById(R.id.my_toolbar_edit_profile);
         setSupportActionBar(mytoolbar);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         mail = (EditText) findViewById(R.id.mail_text);
         name = (EditText) findViewById(R.id.name_text);

@@ -29,47 +29,66 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".LauncherActivity" />
         <activity
             android:name=".HappyHourActivity"
             android:label="Happy Hour"
-            android:parentActivityName=".ProfileActivity" />
+            android:parentActivityName=".MainActivity" />
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".ProfileActivity" />
+
         <activity
             android:name=".CineClub"
             android:label="Cine Club"
             android:parentActivityName=".ProfileActivity" />
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".ProfileActivity" />
+
         <activity
             android:name=".MembersActivity"
             android:label="Members"
             android:parentActivityName=".ProfileActivity" />
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".ProfileActivity" />
+
         <activity
             android:name=".ProfileActivity"
             android:label="Profile"
-            android:parentActivityName=".ProfileActivity" />
+            android:parentActivityName=".MainActivity" />
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".ProfileActivity" />
+
         <activity
             android:name=".ProfileEditActivity"
             android:label="Edit Profile"
             android:parentActivityName=".ProfileActivity" />
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".ProfileActivity" />
-        <activity android:name=".GamesActivity"/>
 
-        <activity android:name=".RegisterActivity"
-            android:label="Register"/>
+        <activity android:name=".GamesActivity"
+            android:label="Sports Events"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Register" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

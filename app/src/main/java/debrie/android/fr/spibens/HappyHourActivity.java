@@ -82,6 +82,9 @@ public class HappyHourActivity extends AppCompatActivity {
         setContentView(R.layout.activity_happyh);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         final StorageReference mStorageRef;
         mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://spibens-331c8.appspot.com/").child("HappyHour").child("flyer.png");

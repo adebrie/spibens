@@ -1,5 +1,6 @@
 package debrie.android.fr.spibens;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -61,11 +62,20 @@ public class RegisterActivity extends AppCompatActivity {
                 final EditText year = (EditText)findViewById(R.id.editText2);
 
                 mAuth = FirebaseAuth.getInstance();
-                profileRef = FirebaseDatabase.getInstance().getReference("membersList").child(mAuth.getCurrentUser().getUid());
+                String uId = mAuth.getCurrentUser().getUid();
+
+                u.setEmail(mAuth.getCurrentUser().getEmail());
+
+                profileRef = FirebaseDatabase.getInstance().getReference("membersList").child(uId);
 
                 u.setStartingYear(year.getText().toString());
 
                 profileRef.setValue(u.toMap());
+
+                Intent i = new Intent(RegisterActivity.this, ProfileActivity.class);
+                i.putExtra("id", uId);
+                startActivity(i);
+
 
                 break;
         }
@@ -112,6 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar_register);
         setSupportActionBar(myToolbar);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
         u = new User();
 
     }

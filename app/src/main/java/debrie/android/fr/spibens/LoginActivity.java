@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
-                    startActivity(new Intent(LoginActivity.this, LauncherActivity.class));
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 }
             }
         };
@@ -370,7 +370,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                            Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                            i.putExtra("id", mAuth.getCurrentUser().getUid());
+                            startActivity(i);
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
