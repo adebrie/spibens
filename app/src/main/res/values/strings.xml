@@ -23,4 +23,6 @@
     <string name="title_activity_profile_edit">ProfileEditActivity</string>
     <string name="title_activity_nav_drawer">NavDrawer</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_event_list">Events</string>
+    <string name="title_event_detail">Event Detail</string>
 </resources>

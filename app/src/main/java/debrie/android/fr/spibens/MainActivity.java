@@ -78,11 +78,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_search) {
 
         } else if (id == R.id.nav_happyhour) {
-            Intent i = new Intent(MainActivity.this, HappyHourActivity.class);
+            Intent i = new Intent(MainActivity.this, EventListActivity.class);
+            i.putExtra("eventsType","happyhour");
             startActivity(i);
-
         } else if (id == R.id.nav_sport) {
-            startActivity(new Intent(MainActivity.this, GamesActivity.class));
+            Intent i = new Intent(MainActivity.this, EventListActivity.class);
+            i.putExtra("eventsType","sports");
+            startActivity(i);
 
         } else if (id == R.id.nav_profile) {
             Intent i = new Intent(MainActivity.this, ProfileActivity.class);
