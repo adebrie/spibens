@@ -354,11 +354,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             ).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
+                    showProgress(false);
                     Toast.makeText(getApplicationContext(), "Signed In ! ", Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    showProgress(false);
                     mPasswordView.setError("Incorrect password");
                 }
             });
@@ -369,6 +371,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        showProgress(false);
                         if (task.isSuccessful()){
                             Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                             i.putExtra("id", mAuth.getCurrentUser().getUid());
@@ -378,6 +381,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        showProgress(false);
                         mPasswordView.setError("Error creating new account");
                     }
                 });
@@ -388,7 +392,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            showProgress(false);
 
             if (!success){
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

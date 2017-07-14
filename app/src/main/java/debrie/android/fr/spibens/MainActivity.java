@@ -2,6 +2,7 @@ package debrie.android.fr.spibens;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -15,9 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mAuth = FirebaseAuth.getInstance();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -34,6 +40,29 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+
+        // AUTH LISTENER
+        // Redirects unauthorized user
+        mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser u = firebaseAuth.getCurrentUser();
+                if (u != null) {
+                    //Logged in
+                    System.out.println("Signed in");
+                    System.out.println(u.getUid());
+
+                } else {
+                    //Logged out
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+            }
+        });
+        super.onStart();
     }
 
     @Override
@@ -60,15 +89,15 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            mAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -88,6 +117,9 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(MainActivity.this, ProfileActivity.class);
             i.putExtra("id", mAuth.getCurrentUser().getUid());
             startActivity(i);
+
+        } else if (id == R.id.nav_members) {
+            startActivity(new Intent(MainActivity.this, MembersActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

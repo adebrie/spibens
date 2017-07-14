@@ -19,6 +19,7 @@ import android.graphics.Canvas;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private StorageReference mStorageRef;
     private DatabaseReference profileRef;
+    private FirebaseAuth mAuth;
     private User u;
     private String id;
 
@@ -58,6 +60,11 @@ public class ProfileActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater i = getMenuInflater();
         i.inflate(R.menu.profile, menu);
+        //If user is watching his own profile, show EDIT button
+        if (mAuth.getCurrentUser().getUid().equals(id)){
+            menu.findItem(R.id.action_profile_edit).setVisible(true);
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -69,6 +76,8 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar mytoolbar = (Toolbar) findViewById(R.id.my_toolbar_profile);
         setSupportActionBar(mytoolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mAuth = FirebaseAuth.getInstance();
 
 
 
