@@ -29,13 +29,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".LauncherActivity" />
-        <activity
-            android:name=".HappyHourActivity"
-            android:label="Happy Hour"
-            android:parentActivityName=".MainActivity" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -77,17 +72,34 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".ProfileActivity" />
 
-        <activity android:name=".GamesActivity"
+        <activity
+            android:name=".GamesActivity"
             android:label="Sports Events"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RegisterActivity"
             android:label="Register" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".EventListActivity"
+            android:label="@string/title_event_list"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="debrie.android.fr.spibens.MainActivity" />
+        </activity>
+        <activity
+            android:name=".EventDetailActivity"
+            android:label="@string/title_event_detail"
+            android:parentActivityName=".EventListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="debrie.android.fr.spibens.EventListActivity" />
         </activity>
     </application>
 
