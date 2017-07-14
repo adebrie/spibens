@@ -89,9 +89,6 @@ public class HappyHourActivity extends AppCompatActivity {
         final StorageReference mStorageRef;
         mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://spibens-331c8.appspot.com/").child("HappyHour").child("flyer.png");
 
-
-
-
         ImageView im = (ImageView) findViewById(R.id.flyer_im);
         Glide.with(this)
                 .using(new FirebaseImageLoader())
@@ -108,7 +105,7 @@ public class HappyHourActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_favorite420:
+            case R.id.action_favorite:
                 FirebaseMessaging fm = FirebaseMessaging.getInstance();
                 if (!starred) {
                     SubscribeRef.setValue(true);

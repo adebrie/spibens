@@ -129,8 +129,6 @@ public class ProfileActivity extends AppCompatActivity {
                 } catch (Exception e){
                     e.printStackTrace();
                 }
-
-
             }
 
             @Override
@@ -144,7 +142,7 @@ public class ProfileActivity extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance()
                 .getReferenceFromUrl("gs://spibens-331c8.appspot.com/")
                 .child("Members")
-                .child( id + ".jpg");
+                .child( id );
 
         View vw = findViewById(R.id.header);
 

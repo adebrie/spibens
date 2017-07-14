@@ -20,6 +20,11 @@ public class User {
     private String startingYear;
     private String section;
 
+    private boolean happyhour;
+    private boolean sports;
+
+
+
     public User(Map<String, Object> userMap){
         name = userMap.get("name").toString();
         lab = userMap.get("lab").toString();
@@ -60,6 +65,26 @@ public class User {
         userMap.put("studies", studies);
 
         return userMap;
+    }
+
+    public String getStudies() {
+        return studies;
+    }
+
+    public boolean isHappyhour() {
+        return happyhour;
+    }
+
+    public void setHappyhour(boolean happyhour) {
+        this.happyhour = happyhour;
+    }
+
+    public boolean isSports() {
+        return sports;
+    }
+
+    public void setSports(boolean sports) {
+        this.sports = sports;
     }
 
     public String getStartingYear() {

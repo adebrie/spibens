@@ -40,8 +40,6 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private StorageReference mStorageRef;
-    private DatabaseReference profileRef;
     private FirebaseAuth mAuth;
     private User u;
 
@@ -57,23 +55,18 @@ public class RegisterActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_profile_send_register:
 
-                final RadioGroup studies = (RadioGroup) findViewById(R.id.studies);
-                final RadioGroup section = (RadioGroup) findViewById(R.id.section);
                 final EditText year = (EditText)findViewById(R.id.editText2);
-
                 mAuth = FirebaseAuth.getInstance();
                 String uId = mAuth.getCurrentUser().getUid();
-
                 u.setEmail(mAuth.getCurrentUser().getEmail());
-
-                profileRef = FirebaseDatabase.getInstance().getReference("membersList").child(uId);
-
                 u.setStartingYear(year.getText().toString());
 
-                profileRef.setValue(u.toMap());
-
-                Intent i = new Intent(RegisterActivity.this, ProfileActivity.class);
+                Intent i = new Intent(RegisterActivity.this, ProfileEditActivity.class);
                 i.putExtra("id", uId);
+                i.putExtra("studies", u.getStudies());
+                i.putExtra("section", u.getSection());
+                i.putExtra("startingYear", u.getStartingYear());
+                i.putExtra("email", u.getEmail());
                 startActivity(i);
 
 
