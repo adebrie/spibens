@@ -1,4 +1,4 @@
-package debrie.android.fr.spibens.dummy;
+package debrie.android.fr.spibens;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,12 +49,18 @@ public class EventContent {
         private String date;
         private String location;
         private String description;
+        private String id;
 
-        public EventItem(String name, String date, String location, String description) {
+        public EventItem(String name, String date, String location, String description, String id) {
             this.name = name;
             this.date = date;
             this.location = location;
             this.description = description;
+            this.id = id;
+        }
+
+        public String getId() {
+            return id;
         }
 
         public String getName() {

@@ -13,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,10 +32,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import debrie.android.fr.spibens.dummy.EventContent;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -110,7 +106,7 @@ public class EventListActivity extends AppCompatActivity {
 
         items = new ArrayList<EventContent.EventItem>();
         eventsType = getIntent().getStringExtra("eventsType");
-        storageReference= FirebaseStorage.getInstance().getReferenceFromUrl("gs://spibens-331c8.appspot.com/").child("HappyHour").child("flyer.png");
+        storageReference= FirebaseStorage.getInstance().getReferenceFromUrl("gs://spibens-331c8.appspot.com/").child("eventFlyer");
 
         eventsRef = FirebaseDatabase.getInstance().getReference("eventsList");
 
@@ -119,10 +115,8 @@ public class EventListActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map<String, Object> eventmap = (Map<String, Object>) dataSnapshot.getValue();
 
-                System.out.println(eventsType);
-                System.out.println(eventmap.get("type"));
                 if(eventmap.get("type").equals(eventsType)) {
-                    EventContent.EventItem event = new EventContent.EventItem(eventmap.get("name").toString(), eventmap.get("date").toString(), eventmap.get("location").toString(), eventmap.get("description").toString());
+                    EventContent.EventItem event = new EventContent.EventItem(eventmap.get("name").toString(), eventmap.get("date").toString(), eventmap.get("location").toString(), eventmap.get("description").toString(), dataSnapshot.getKey());
                     items.add(event);
                     invalidateView();
                 }
@@ -195,14 +189,18 @@ public class EventListActivity extends AppCompatActivity {
             holder.mNameView.setText(mValues.get(position).getName());
             holder.mDateView.setText(mValues.get(position).getDate());
             holder.mLocationView.setText(mValues.get(position).getLocation());
-            Glide.with(getApplication()).using(new FirebaseImageLoader()).load(storageReference).into(holder.mEventpicView);
+            Glide.with(getApplication()).using(new FirebaseImageLoader()).load(storageReference.child(mValues.get(position).getName()+".jpg")).into(holder.mEventpicView);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(EventDetailFragment.ARG_ITEM_ID, holder.mItem.getName());
+                        arguments.putString(EventDetailFragment.ARG_ITEM_NAME, holder.mItem.getName());
+                        arguments.putString(EventDetailFragment.ARG_ITEM_DESCRIPTION, holder.mItem.getDescription());
+                        arguments.putString(EventDetailFragment.ARG_ITEM_LOCATION, holder.mItem.getLocation());
+                        arguments.putString(EventDetailFragment.ARG_ITEM_DATE, holder.mItem.getDate());
+                        arguments.putString(EventDetailFragment.ARG_ITEM_TYPE, eventsType);
                         EventDetailFragment fragment = new EventDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -211,7 +209,11 @@ public class EventListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, EventDetailActivity.class);
-                        intent.putExtra(EventDetailFragment.ARG_ITEM_ID, holder.mItem.getName());
+                        intent.putExtra(EventDetailFragment.ARG_ITEM_NAME, holder.mItem.getName());
+                        intent.putExtra(EventDetailFragment.ARG_ITEM_DESCRIPTION, holder.mItem.getDescription());
+                        intent.putExtra(EventDetailFragment.ARG_ITEM_LOCATION, holder.mItem.getLocation());
+                        intent.putExtra(EventDetailFragment.ARG_ITEM_DATE, holder.mItem.getDate());
+                        intent.putExtra(EventDetailFragment.ARG_ITEM_TYPE, eventsType);
 
                         context.startActivity(intent);
                     }
