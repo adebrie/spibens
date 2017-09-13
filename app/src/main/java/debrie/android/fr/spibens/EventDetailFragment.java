@@ -57,7 +57,7 @@ public class EventDetailFragment extends Fragment {
 
         DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference("eventsList");
 
-        mItem = new EventContent.EventItem(getArguments().get(ARG_ITEM_NAME).toString(),getArguments().get(ARG_ITEM_DATE).toString(),getArguments().get(ARG_ITEM_LOCATION).toString(),getArguments().get(ARG_ITEM_DESCRIPTION).toString(),null );
+        mItem = new EventContent.EventItem(getArguments().get(ARG_ITEM_NAME).toString(),getArguments().get(ARG_ITEM_DATE).toString(),getArguments().get(ARG_ITEM_LOCATION).toString(),getArguments().get(ARG_ITEM_DESCRIPTION).toString(),0 );
 
 
         Activity activity = this.getActivity();

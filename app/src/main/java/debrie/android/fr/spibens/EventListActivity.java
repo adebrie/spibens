@@ -35,6 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * An activity representing a list of Events. This activity
@@ -65,6 +66,7 @@ public class EventListActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.happyh, menu);
         if(!done) {
+            try{
             SubscribeRef = FirebaseDatabase.getInstance().getReference("membersList").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(eventsType);
             SubscribeRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -84,7 +86,9 @@ public class EventListActivity extends AppCompatActivity {
                 public void onCancelled(DatabaseError databaseError) {
 
                 }
-            });
+            });}catch (NullPointerException e){
+                System.out.println("oupppps");
+            }
         }
         if(starred){
             menu.getItem(0).setIcon(R.drawable.ic_action_star);
@@ -102,21 +106,29 @@ public class EventListActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
 
         items = new ArrayList<EventContent.EventItem>();
         eventsType = getIntent().getStringExtra("eventsType");
+        switch (eventsType){
+            case "sports" :
+                getSupportActionBar().setTitle("Games");
+                break;
+            case "happyhour" :
+                getSupportActionBar().setTitle("Happy Hour");
+                break;
+        }
+
         storageReference= FirebaseStorage.getInstance().getReferenceFromUrl("gs://spibens-331c8.appspot.com/").child("eventFlyer");
 
         eventsRef = FirebaseDatabase.getInstance().getReference("eventsList");
-
+        
         eventsRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map<String, Object> eventmap = (Map<String, Object>) dataSnapshot.getValue();
 
                 if(eventmap.get("type").equals(eventsType)) {
-                    EventContent.EventItem event = new EventContent.EventItem(eventmap.get("name").toString(), eventmap.get("date").toString(), eventmap.get("location").toString(), eventmap.get("description").toString(), dataSnapshot.getKey());
+                    EventContent.EventItem event = new EventContent.EventItem(eventmap.get("name").toString(), eventmap.get("date").toString(), eventmap.get("location").toString(), eventmap.get("description").toString(), Integer.parseInt(dataSnapshot.getKey()));
                     items.add(event);
                     invalidateView();
                 }
