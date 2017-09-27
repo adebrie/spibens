@@ -30,16 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LauncherActivity" />
-
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".ProfileActivity" />
-
-        <activity
-            android:name=".CineClub"
-            android:label="Cine Club"
-            android:parentActivityName=".ProfileActivity" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -78,7 +68,8 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RegisterActivity"
-            android:label="Register" />
+            android:label="Register"
+            android:parentActivityName=".LoginActivity"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"

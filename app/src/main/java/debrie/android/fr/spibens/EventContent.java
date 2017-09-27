@@ -1,6 +1,9 @@
-package debrie.android.fr.spibens.dummy;
+package debrie.android.fr.spibens;
+
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +15,7 @@ import java.util.Map;
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class EventContent {
+public class EventContent implements Comparator {
 
     /**
      * An array of sample (dummy) items.
@@ -41,6 +44,17 @@ public class EventContent {
         return builder.toString();
     }
 
+    @Override
+    public int compare(Object o1, Object o2) {
+        EventItem e1 = (EventItem)o1;
+        EventItem e2 = (EventItem)o1;
+        if(e1.id>e2.id){
+           return 1;
+        }else {
+            return-1;
+        }
+    }
+
     /**
      * A dummy item representing a piece of content.
      */
@@ -49,12 +63,18 @@ public class EventContent {
         private String date;
         private String location;
         private String description;
+        private int id;
 
-        public EventItem(String name, String date, String location, String description) {
+        public EventItem(String name, String date, String location, String description, int id) {
             this.name = name;
             this.date = date;
             this.location = location;
             this.description = description;
+            this.id = id;
+        }
+
+        public int getId() {
+            return id;
         }
 
         public String getName() {
@@ -77,5 +97,6 @@ public class EventContent {
         public String toString() {
             return name;
         }
+
     }
 }

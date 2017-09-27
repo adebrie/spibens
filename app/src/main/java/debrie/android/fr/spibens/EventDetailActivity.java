@@ -45,8 +45,16 @@ public class EventDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(EventDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(EventDetailFragment.ARG_ITEM_ID));
+            arguments.putString(EventDetailFragment.ARG_ITEM_NAME,
+                    getIntent().getStringExtra(EventDetailFragment.ARG_ITEM_NAME));
+            arguments.putString(EventDetailFragment.ARG_ITEM_DATE,
+                    getIntent().getStringExtra(EventDetailFragment.ARG_ITEM_DATE));
+            arguments.putString(EventDetailFragment.ARG_ITEM_LOCATION,
+                    getIntent().getStringExtra(EventDetailFragment.ARG_ITEM_LOCATION));
+            arguments.putString(EventDetailFragment.ARG_ITEM_DESCRIPTION,
+                    getIntent().getStringExtra(EventDetailFragment.ARG_ITEM_DESCRIPTION));
+            arguments.putString(EventDetailFragment.ARG_ITEM_TYPE,
+                    getIntent().getStringExtra(EventDetailFragment.ARG_ITEM_TYPE));
             EventDetailFragment fragment = new EventDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -65,7 +73,9 @@ public class EventDetailActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, EventListActivity.class));
+            Intent i = new Intent(this, EventListActivity.class);
+            i.putExtra("eventsType",getIntent().getStringExtra(EventDetailFragment.ARG_ITEM_TYPE));
+            navigateUpTo(i);
             return true;
         }
         return super.onOptionsItemSelected(item);
