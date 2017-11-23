@@ -71,7 +71,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         <meta-data android:name="android.app.default_searchable"
-            android:value=".SearchableActivity" />
+            android:value=".SearchActivity" />
         </activity>
         <activity
             android:name=".EventListActivity"

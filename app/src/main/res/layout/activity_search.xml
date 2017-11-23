@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context="debrie.android.fr.spibens.SearchActivity">
 
+    <android.support.v7.widget.ListViewCompat
+        android:id="@+id/search_listview"
+        android:layout_width="381dp"
+        android:layout_height="572dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

@@ -48,6 +48,11 @@ public class ProfileActivity extends AppCompatActivity {
                 Intent i = new Intent(ProfileActivity.this, ProfileEditActivity.class);
                 System.out.println("USER ID "+id);
                 i.putExtra("id", id);
+                i.putExtra("name", u.getName());
+                i.putExtra("lab", u.getLab());
+                i.putExtra("room", u.getRoom());
+                i.putExtra("skills", u.getSkills());
+                i.putExtra("worksOn", u.getWorksOn());
                 startActivity(i);
                 return true;
 
@@ -142,7 +147,7 @@ public class ProfileActivity extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance()
                 .getReferenceFromUrl("gs://spibens-331c8.appspot.com/")
                 .child("Members")
-                .child( String.valueOf(id) + ".jpg");
+                .child( String.valueOf(id));
 
         View vw = findViewById(R.id.header);
 

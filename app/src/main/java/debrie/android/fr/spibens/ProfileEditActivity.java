@@ -61,10 +61,6 @@ public class ProfileEditActivity extends AppCompatActivity {
                 u.setStudies(studies);
                 u.setStartingYear(startingYear);
 
-                // No subscription preferences by default
-                u.setHappyhour(false);
-                u.setSports(false);
-
                 //Send updated info to firebase
                 profileRef = FirebaseDatabase.getInstance().getReference("membersList");
                 profileRef.child(String.valueOf(id)).setValue(u);
@@ -98,7 +94,7 @@ public class ProfileEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_edit);
         Toolbar mytoolbar = (Toolbar) findViewById(R.id.my_toolbar_edit_profile);
         setSupportActionBar(mytoolbar);
-//        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         name = (EditText) findViewById(R.id.name_text);
@@ -107,6 +103,18 @@ public class ProfileEditActivity extends AppCompatActivity {
         worksOn = (EditText) findViewById(R.id.workson_text);
         skills = (EditText) findViewById(R.id.skills_text);
         lang = (EditText) findViewById(R.id.lang_text);
+
+        name.setHint(getIntent().getStringExtra("name"));
+        lab.setHint(getIntent().getStringExtra("lab"));
+        room.setHint(getIntent().getStringExtra("room"));
+        worksOn.setHint(getIntent().getStringExtra("worksOn"));
+        skills.setHint(getIntent().getStringExtra("skills"));
+        lang.setHint(getIntent().getStringExtra("lang"));
+
+        // No subscription preferences by default
+        u.setHappyhour(false);
+        u.setSports(false);
+
 
         // Get Intent Extra data
         id = getIntent().getStringExtra("id");
@@ -148,6 +156,7 @@ public class ProfileEditActivity extends AppCompatActivity {
 
                 mStorageRef.putFile(file);
 
+                Toast.makeText(getApplicationContext(), "Picture uploaded", Toast.LENGTH_SHORT).show();
                 System.out.println("STORAGE REF "+mStorageRef.toString());
 
 
