@@ -142,7 +142,7 @@ public class ProfileActivity extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance()
                 .getReferenceFromUrl("gs://spibens-331c8.appspot.com/")
                 .child("Members")
-                .child( id );
+                .child( String.valueOf(id) + ".jpg");
 
         View vw = findViewById(R.id.header);
 

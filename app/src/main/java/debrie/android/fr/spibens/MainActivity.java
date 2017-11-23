@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity
 
     private StorageReference storageReference;
     private DatabaseReference eventsRef;
+    private FirebaseAuth mAuth;
     List<EventContent.EventItem> items;
 
     @Override
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        mAuth = FirebaseAuth.getInstance();
         storageReference= FirebaseStorage.getInstance().getReferenceFromUrl("gs://spibens-331c8.appspot.com/").child("eventFlyer");
 
         eventsRef = FirebaseDatabase.getInstance().getReference("eventsList");
@@ -156,16 +158,14 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    //SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        System.out.println("COUCOUCOUCOU");
-
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         if (id == R.id.nav_search) {
+            onSearchRequested();
 
         } else if (id == R.id.nav_happyhour) {
             Intent i = new Intent(MainActivity.this, EventListActivity.class);

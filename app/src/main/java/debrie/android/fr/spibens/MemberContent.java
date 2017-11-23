@@ -1,44 +1,39 @@
-package debrie.android.fr.spibens.dummy;
+package debrie.android.fr.spibens;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- * <p>
- * TODO: Replace all uses of this class before publishing your app.
- */
-public class DummyContent {
+
+public class MemberContent {
 
     /**
-     * An array of sample (dummy) items.
+     * An array of sample (Member) items.
      */
-    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    public static final List<MemberItem> ITEMS = new ArrayList<MemberItem>();
 
     /**
-     * A map of sample (dummy) items, by ID.
+     * A map of sample (Member) items, by ID.
      */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
+    public static final Map<String, MemberItem> ITEM_MAP = new HashMap<String, MemberItem>();
 
     private static final int COUNT = 25;
 
     static {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
+            addItem(createMemberItem(i));
         }
     }
 
-    private static void addItem(DummyItem item) {
+    private static void addItem(MemberItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
-    private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
+    private static MemberItem createMemberItem(int position) {
+        return new MemberItem(String.valueOf(position), "Item " + position, makeDetails(position));
     }
 
     private static String makeDetails(int position) {
@@ -51,14 +46,14 @@ public class DummyContent {
     }
 
     /**
-     * A dummy item representing a piece of content.
+     * A Member item representing a piece of content.
      */
-    public static class DummyItem {
+    public static class MemberItem {
         public final String id;
         public final String content;
         public final String details;
 
-        public DummyItem(String id, String content, String details) {
+        public MemberItem(String id, String content, String details) {
             this.id = id;
             this.content = content;
             this.details = details;

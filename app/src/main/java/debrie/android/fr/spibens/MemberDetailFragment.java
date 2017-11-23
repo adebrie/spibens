@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import debrie.android.fr.spibens.dummy.DummyContent;
-
 /**
  * A fragment representing a single Member detail screen.
  * This fragment is either contained in a {@link MemberListActivity}
@@ -27,7 +25,7 @@ public class MemberDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private DummyContent.DummyItem mItem;
+    private MemberContent.MemberItem mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -44,7 +42,7 @@ public class MemberDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = MemberContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
