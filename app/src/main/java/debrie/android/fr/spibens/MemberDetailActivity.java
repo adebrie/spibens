@@ -25,14 +25,6 @@ public class MemberDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
@@ -55,11 +47,30 @@ public class MemberDetailActivity extends AppCompatActivity {
             Bundle arguments = new Bundle();
             arguments.putString(MemberDetailFragment.ARG_ITEM_ID,
                     getIntent().getStringExtra(MemberDetailFragment.ARG_ITEM_ID));
+            arguments.putString(MemberDetailFragment.ARG_ITEM_NAME,
+                    getIntent().getStringExtra(MemberDetailFragment.ARG_ITEM_NAME));
+            arguments.putString(MemberDetailFragment.ARG_ITEM_STARTYEAR,
+                    getIntent().getStringExtra(MemberDetailFragment.ARG_ITEM_STARTYEAR));
+            arguments.putString(MemberDetailFragment.ARG_ITEM_STUDIES,
+                    getIntent().getStringExtra(MemberDetailFragment.ARG_ITEM_STUDIES));
+            arguments.putString(MemberDetailFragment.ARG_ITEM_SECTION,
+                    getIntent().getStringExtra(MemberDetailFragment.ARG_ITEM_SECTION));
+            arguments.putString(MemberDetailFragment.ARG_ITEM_ROOM,
+                    getIntent().getStringExtra(MemberDetailFragment.ARG_ITEM_ROOM));
+            arguments.putString(MemberDetailFragment.ARG_ITEM_LAB,
+                    getIntent().getStringExtra(MemberDetailFragment.ARG_ITEM_LAB));
+            arguments.putString(MemberDetailFragment.ARG_ITEM_EMAIL,
+                    getIntent().getStringExtra(MemberDetailFragment.ARG_ITEM_EMAIL));
+            arguments.putString(MemberDetailFragment.ARG_ITEM_WORKSON,
+                    getIntent().getStringExtra(MemberDetailFragment.ARG_ITEM_WORKSON));
             MemberDetailFragment fragment = new MemberDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.member_detail_container, fragment)
                     .commit();
+
+
+
         }
     }
 

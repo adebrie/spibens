@@ -38,7 +38,22 @@
         <activity
             android:name=".MemberListActivity"
             android:label="Members"
-            android:parentActivityName=".ProfileActivity" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="debrie.android.fr.spibens.MemberListActivity" />
+        </activity>
+
+        <activity
+            android:name=".MemberDetailActivity"
+            android:label="Member's Detail"
+            android:parentActivityName=".MemberListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="debrie.android.fr.spibens.MemberListActivity" />
+        </activity>
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"

@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
 
         } else if (id == R.id.nav_members) {
-            startActivity(new Intent(MainActivity.this, MembersActivity.class));
+            startActivity(new Intent(MainActivity.this, MemberListActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
